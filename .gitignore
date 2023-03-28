@@ -1,2 +1,2 @@
 .DS_Store
-./kubeconfig-lena-cluster.yaml
+kubeconfig-lena-cluster.yaml
