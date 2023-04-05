@@ -38,6 +38,8 @@ PVC(PersistentVolumeClaim)을 적용해서 PV가 동적으로 생성되는 것�
 
 1. PVC를 생성하기 위해 아래 YAML을 배포
 
+   **특정 스토리지 클래스인 `csi-cinder-sc-delete` 를 요청하는 PVC를 생성한다.**
+
    ```yaml
    # pv/pvc-test.yaml
    apiVersion: v1
@@ -57,6 +59,8 @@ PVC(PersistentVolumeClaim)을 적용해서 PV가 동적으로 생성되는 것�
 
    → `csi-cinder-sc-delete` 라는 이름의 스토리지 클래스에서 10Gi 의 저장소를 요청
 
+   자세한 내용은 다음 Dynamic Provisioning 페이지에서!
+
    ```bash
    kubectl apply -f pv/pvc-test.yaml
 
@@ -71,6 +75,31 @@ PVC(PersistentVolumeClaim)을 적용해서 PV가 동적으로 생성되는 것�
    ```
 
    ![image](https://user-images.githubusercontent.com/49095587/229855063-5dc68c4d-a182-4119-9ad7-808bdccaba22.png)
+
+- `NAME`: 스토리지 클래스의 이름
+- `CAPACITY`: 스토리지 클래스가 지원하는 총 용량
+- `ACCESS MODES`: 이 스토리지 클래스에 액세스 할 수 있는 방법
+- `RECLAIM POLICY`: 스토리지 클래스에서 사용한 볼륨이 삭제된 후 어떻게 처리해야 하는지를 나타냄
+- `STATUS`: 이 스토리지 클래스의 상태
+  - `Pending` : PVC가 아직 바인딩되기 전
+  - `Bound` : 해당 스토리지 클래스에서 사용중인 PVC가 있음
+  - `Lost` : PVC와 연관된 PV가 삭제된 경우 (관리자가 볼륨을 삭제하거나, 영구적으로 손상된 경우)
+  - `Failed` : PVC가 바인딩할 수 있는 적합한 PV를 찾지 못한 경우
+  - `Unknown` : 클레임의 상태를 알 수 없는 경우 (k8s 컨트롤러와의 통신 문제 또는 일시적인 네트워크 문제)
+- `CLAIM`: 이 스토리지 클래스를 사용하는 클레임의 이름
+- `STORAGECLASS`: 이 스토리지 클래스의 유형
+- `REASON`: 이 스토리지 클래스의 현재 상태를 나타내는 이유
+- `AGE`: 이 스토리지 클래스가 생성된 시간에서부터 경과한 시간
+
+<br>
+
+### `spec.accessModes` 와 출력결과의 `ACCESS MODES`
+
+- `RWO(ReadWriteOnce)` : 단일 노드만이 읽기/쓰기 용으로 볼륨을 마운트 할 수 있다.
+- `ROX(ReadOnlyMany)` : 다수 노드가 읽기용으로 볼륨을 마운트 할 수 있다.
+- `RWX(ReadWriteMany)` : 다수 노드가 읽기/쓰기 용으로 볼륨을 마운트 할 수 있다.
+
+**→ 파드 수가 아닌 볼륨을 동시에 사용할 수 있는 워커 노드 수와 관련이 있다.**
 
 <br>
 
@@ -143,3 +172,13 @@ PVC(PersistentVolumeClaim)을 적용해서 PV가 동적으로 생성되는 것�
    - `task-pv-pod`: 명령어를 실행할 Pod의 이름입니다.
    - `-`: 명령어 실행을 위한 구분 기호입니다.
    - `df -h`: 실행할 명령어로, 현재 파일 시스템의 디스크 사용 현황을 보여주는 명령어입니다. **`h`** 옵션은 디스크 사용량을 사람이 읽기 쉬운 형식으로 표시합니다.
+
+→ 정상적으로 파드가 생성되어 PV에 마운트 되었음을 확인할 수 있다.
+
+<br>
+
+### PVC와 PV가 개발자에게 미치는 장점
+
+---
+
+개발자가 내부적으로 사용된 실제 스토리지 기술을 처리할 필요 없이 쉽게 Persistent Storage를 사용할 수 있다.
