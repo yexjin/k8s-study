@@ -25,3 +25,19 @@
 ### `Controller`
 
 - 끊임 없이 상태를 체크하고 원하는 상태를 유지
+
+### `Controller`
+
+- 노드에 배포되는 Agent로, Pod 내의 container들이 실행되는 것을 직접적으로 관리
+
+<br>
+
+### Flow
+
+1. user(yaml) 요청은 api-server로
+2. api-server 요청은 etcd에 저장
+3. etcd의 결과가 다시 api-server에 리턴됨
+4. kube-scheduler는 새로 생성된 Pod를 감지하고 실행할 노드를 선택
+5. pod가 어디에 뜰건지를 api-server가 인지하고 etcd와 통신
+6. api-server -> kubelet(client) -> kubelet(server)
+7. kubelet(worker node) -> container runtime
