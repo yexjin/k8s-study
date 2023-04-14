@@ -41,3 +41,6 @@
 5. pod가 어디에 뜰건지를 api-server가 인지하고 etcd와 통신
 6. api-server -> kubelet(client) -> kubelet(server)
 7. kubelet(worker node) -> container runtime
+8. 컨테이너를 띄우고 kubelet -> api server(상태값)
+9. 또 etcd와 통신 (상태값 업뎃)
+10. kubelet이 주기적으로 Pod 상태 체크
