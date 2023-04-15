@@ -26,7 +26,7 @@
 
 - 끊임 없이 상태를 체크하고 원하는 상태를 유지
 
-### `Controller`
+### `kubelet`
 
 - 노드에 배포되는 Agent로, Pod 내의 container들이 실행되는 것을 직접적으로 관리
 
