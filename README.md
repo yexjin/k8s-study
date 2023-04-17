@@ -1,8 +1,13 @@
 # k8s-study
 
-컬버네티스 선생님과 함께하는... k8s 스터디
+### 📚 스터디 참고 자료
 
-## 🗓 Study List
+- [Kubernetes Documentation](https://kubernetes.io/)
+- [Kubernetes IN ACTION](https://product.kyobobook.co.kr/detail/S000001804740)
+
+<br>
+
+### 🗓 Study List
 
 | Date         | Study                      | About                                                                    |
 | ------------ | -------------------------- | ------------------------------------------------------------------------ |
