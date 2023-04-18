@@ -6,8 +6,8 @@ spec:
   serviceAccountName: foo
   automountServiceAccountToken: true
   containers:
-    - name: main
-      image: tutum/curl
+    - name: sleep-com
+      image: nginxdemos/hello
+      ports:
+        - containerPort: 80
       command: ["sleep", "9999999"]
-    - name: ambassador
-      image: luksa/kubectl-proxy:1.6.2
