@@ -1,3 +1,5 @@
+# ServiceAccount
+
 <aside>
 
 🤔 **인증** vs **인가
@@ -84,14 +86,9 @@ spec:
 
 <br>
 
-- ⚠️ 파드의 컨테이너에 마운트된 토큰 확인 오류
-  ```yaml
-  kubectl --kubeconfig kubeconfig-lena-cluster.yaml exec -it ex-for-sa -c main -- cat /var/run/secrets/kubernetes.io/serviceaccount/token
-  error: unable to upgrade connection: container not found ("main")
-  ```
-- ⚠️ API 서버와 통신하기 위해 사용자 정의 serviceAccount token 사용
+3️⃣ Pod의 컨테이너에 serviceAccount 토큰이 마운트 되었는지 확인
 
-  ```yaml
-  kubectl --kubeconfig kubeconfig-lena-cluster.yaml exec -it ex-for-sa -c main -- curl localhost:8001/api/vi/pods
-  error: unable to upgrade connection: container not found ("main")
-  ```
+```bash
+  kubectl --kubeconfig kubeconfig-lena-cluster.yaml exec -it ex-for-sa -c sleep-com -- cat /var/run/secrets/kubernetes.io/serviceaccount/token
+  eyJhbGciOiJSUzI1NiIsImtpZCI6IklhVWdMaDNmYXRxQXhJVFA1blBMd2F0OFJpMjRtVmhXNUV5bzFvWTlrY0EifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNzEzMzEyNzU2LCJpYXQiOjE2ODE3NzY3NTYsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJkZWZhdWx0IiwicG9kIjp7Im5hbWUiOiJleC1mb3Itc2EiLCJ1aWQiOiI0YjQ3NDhmOC1iMDMzLTQ5NzQtYTRmYS00OWE4ZWFkZmJhNTUifSwic2VydmljZWFjY291bnQiOnsibmFtZSI6ImZvbyIsInVpZCI6IjFhOTlhNGExLTk2NWYtNDcwZC05NGJhLTA5OWViYTdiYTVjZCJ9LCJ3YXJuYWZ0ZXIiOjE2ODE3ODAzNjN9LCJuYmYiOjE2ODE3NzY3NTYsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmZvbyJ9.Nfc2CDwttsArDYoXSUqZnQg4Iv_Fb-8A4kAf-SkUQZl0ztvUYM501j7Rff941iOKeBAVrCMz2uV1AixlwIzROaTuz9k9xDvLfwEb5fU5Y2-ozRaylZPFOIRlnTjsYcv9nEno9GHDRvyNA6slRaJcnwe4veSJdk2IiNqsBpi1VeWNEM1CrD25T9tTePOa9zZCgAI3UpQFNgdL9uTPxLX8_09ODxzmr32m9PKXZ_aHxT7er7Ha_Rq-WSw0Zax3jGGt_fIyFUdcL6e_v9hpn6oDDtRzuLVHTNQXwMX5w2pttQcEodWMZBcSzcr55wNRth_wNVB32V_FEE41ZQDggsxsOQ%
+```
