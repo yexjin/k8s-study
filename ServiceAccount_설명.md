@@ -25,6 +25,16 @@ API 서버가 파드에서 실행되는 애플리케이션에게 요청을 받�
 
 <br>
 
+### ServiceAccount와 UserAccount의 차이
+
+---
+
+- `ServiceAccount` : **Pod에서 실행되는 프로세스**를 위한 account
+- `UserAccount`: **실제 사람**을 위한 account
+- 좀 더 쉽게 말하면,, 쿠버네티스에 할당된 유저가 User Account, Pod가 다른 쿠버네티스 자원(Pods, Services …) 에 접근하기 위해 하는 증명 주체가 ServiceAccount.
+
+<br>
+
 ### ServiceAccount(sa)
 
 ---
