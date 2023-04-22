@@ -3,3 +3,6 @@ kubeconfig-lena-cluster.yaml
 lena.csr
 lena.crt
 lena.key
+*.csr
+*.crt
+*.key
