@@ -19,3 +19,4 @@
 | Apr 12, 2023    | Configmap, Secret          | 공부 및 실습                                                             |
 | Apr 14, 2023    | k8s Architecture           | kubelet 추가 및 전체적인 Flow 공부                                       |
 | Apr 17-18, 2023 | API Server Security        | serviceAccount, RBAC(role, clusterrole, rolebinding, clusterrolebinding) |
+| Apr 23, 2023    | User Switching             | user을 새로 생성하고 switching 하는 법 까지!                             |
