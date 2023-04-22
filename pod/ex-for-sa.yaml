@@ -4,7 +4,7 @@ metadata:
   name: ex-for-sa
 spec:
   serviceAccountName: foo
-  automountServiceAccountToken: true
+  automountServiceAccountToken: false
   containers:
     - name: sleep-com
       image: nginxdemos/hello
