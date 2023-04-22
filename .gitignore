@@ -1,5 +1,5 @@
 .DS_Store
 kubeconfig-lena-cluster.yaml
-*.csr
-*.crt
-*.key
+lena.csr
+lena.crt
+lena.key
