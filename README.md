@@ -24,3 +24,4 @@
 | May 9, 2023     | Kubeadm으로 클러스터 구축 (오류해결) | kube-apiserver에 접속하기 위한 인바운드 포트 열어줌으로써 해결                        |
 | May 10, 2023    | Kubeadm으로 클러스터 구축 (발표)     | AUSG 클라우드 스터디에서 실습 내용 공유 발표 진행                                     |
 | May 15, 2023    | 워커노드 삭제와 재등록               | 지난번의 클러스터에서 워커노드 하나를 삭제하고 다시 클러스터에 재등록해보는 과정 실습 |
+| May 16, 2023    | kubeadm cluster upgrade              | kubeadm cluster의 마스터, 워커노드 버전 upgrade                                       |
